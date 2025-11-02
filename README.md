@@ -33,21 +33,21 @@ JWT_SECRET=supersecretkey
 
 ### 🧱 Project Structure
 
-.
-|-- config/
-|-- controllers/
-|   |-- auth/
-|   |-- books/
-|   `-- categories/
-|-- helpers/
-|-- middleware/
-|-- migrations/
-|   `-- sql_migrations/
-|-- models/
-|-- routers/
-|-- utils/
-|-- main.go
-`-- go.mod
+```
+├── config/             # Database connection setup
+├── controllers/        # Business logic (Auth, Books, Categories)
+│   ├── auth/
+│   ├── books/
+│   └── categories/
+├── helpers/            # Constants, utilities, and JWT helpers
+├── middleware/         # Auth middleware, method validation
+├── migrations/         # SQL migration files
+├── models/             # Struct definitions for DB entities
+├── routers/            # Route definitions
+├── utils/              # Function utilities
+├── main.go             # Entry point
+└── go.mod
+```
 
 ### 🧩 API Endpoints
 
@@ -57,21 +57,25 @@ JWT_SECRET=supersecretkey
 | `POST` | `/register` | Create a new user              |
 | `POST` | `/login`    | User login (returns JWT token) |
 
-/register curl
+/register 
+```
 curl --location 'http://localhost:8080/api/users/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username": "yourname",
     "password": "yourpassword"
 }'
+```
 
-/login curl
+/login 
+```
 curl --location 'http://localhost:8080/api/users/login' \
 --header 'Content-Type: text/plain' \
 --data-raw '{
     "username": "yourname",
     "password": "yourpassword"
 }'
+```
 
 ### 📚 Books
 | Method   | Endpoint     | Description     |
@@ -82,17 +86,22 @@ curl --location 'http://localhost:8080/api/users/login' \
 | `PATCH`  | `/books/:id` | Update book     |
 | `DELETE` | `/books/:id` | Delete book     |
 
-/books get curl
+/books get 
+```
 curl --location 'http://localhost:8080/api/books' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMDk2NTIsImlhdCI6MTc2MjEwNjA1Mn0.5hiJSf1U_jJYy_Ma_FPNKXA8JHa3tyExjO0LsgpgcLs' \
 --data ''
+```
 
-/books/:id get curl
+/books/:id get 
+```
 curl --location 'http://localhost:8080/api/books/3' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMTcyMTYsImlhdCI6MTc2MjExMzYxNn0.Eamys3gMPZ9GCyhHnosJtgtaRunruhHarBLU8MAay_g' \
 --data ''
+```
 
-/books post curl
+/books post 
+```
 curl --location 'http://localhost:8080/api/books' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMDk2NTIsImlhdCI6MTc2MjEwNjA1Mn0.5hiJSf1U_jJYy_Ma_FPNKXA8JHa3tyExjO0LsgpgcLs' \
@@ -105,8 +114,10 @@ curl --location 'http://localhost:8080/api/books' \
     "total_page": 464,
     "category_id": 5
 }'
+```
 
-/books/:id patch curl
+/books/:id patch 
+```
 curl --location --request PATCH 'http://localhost:8080/api/books/5' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMTcyMTYsImlhdCI6MTc2MjExMzYxNn0.Eamys3gMPZ9GCyhHnosJtgtaRunruhHarBLU8MAay_g' \
@@ -119,10 +130,13 @@ curl --location --request PATCH 'http://localhost:8080/api/books/5' \
     "total_page": 80,
     "category_id": 5
 }'
+```
 
-/books/:id delete curl
+/books/:id delete 
+```
 curl --location --request DELETE 'http://localhost:8080/api/books/3' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMTcyMTYsImlhdCI6MTc2MjExMzYxNn0.Eamys3gMPZ9GCyhHnosJtgtaRunruhHarBLU8MAay_g'
+```
 
 ### 🏷 Categories
 | Method   | Endpoint                 | Description            |
@@ -134,40 +148,52 @@ curl --location --request DELETE 'http://localhost:8080/api/books/3' \
 | `DELETE` | `/categories/:id`        | Delete category        |
 | `GET`    | `/categories/:id/books`  | Get books by category  |
 
-/categories get curl
+/categories get 
+```
 curl --location 'http://localhost:8080/api/categories' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMTcyMTYsImlhdCI6MTc2MjExMzYxNn0.Eamys3gMPZ9GCyhHnosJtgtaRunruhHarBLU8MAay_g' \
 --data ''
+```
 
-/categories/:id get curl
+/categories/:id get 
+```
 curl --location 'http://localhost:8080/api/categories/1' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMTcyMTYsImlhdCI6MTc2MjExMzYxNn0.Eamys3gMPZ9GCyhHnosJtgtaRunruhHarBLU8MAay_g' \
 --data ''
+```
 
-/categories post curl
+/categories post 
+```
 curl --location 'http://localhost:8080/api/categories' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMDk2NTIsImlhdCI6MTc2MjEwNjA1Mn0.5hiJSf1U_jJYy_Ma_FPNKXA8JHa3tyExjO0LsgpgcLs' \
 --data '{
     "name": "Teknologi"
 }'
+```
 
-/categories/:id patch curl
+/categories/:id patch 
+```
 curl --location --request PATCH 'http://localhost:8080/api/categories/4' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMDk2NTIsImlhdCI6MTc2MjEwNjA1Mn0.5hiJSf1U_jJYy_Ma_FPNKXA8JHa3tyExjO0LsgpgcLs' \
 --data '{
     "name": "Ilmiah"
 }'
+```
 
-/categories/:id delete curl
+/categories/:id delete
+```
 curl --location --request DELETE 'http://localhost:8080/api/categories/7' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMDk2NTIsImlhdCI6MTc2MjEwNjA1Mn0.5hiJSf1U_jJYy_Ma_FPNKXA8JHa3tyExjO0LsgpgcLs' \
 --data ''
+```
 
-/categories/:id/books get curl
+/categories/:id/books get 
+```
 curl --location 'http://localhost:8080/api/categories/5/books' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZhbm4iLCJleHAiOjE3NjIxMTcyMTYsImlhdCI6MTc2MjExMzYxNn0.Eamys3gMPZ9GCyhHnosJtgtaRunruhHarBLU8MAay_g'
+```
 
 ### 🧰 Run the Server
 ```bash
