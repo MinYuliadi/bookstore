@@ -1,4 +1,4 @@
-package controller
+package auth_controllers
 
 import (
 	"bookstore/config"

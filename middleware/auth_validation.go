@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"bookstore/helpers"
 	"bookstore/utils"
 	"net/http"
 	"strings"
@@ -13,7 +14,7 @@ func AuthValidation() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
 
-		if authHeader == "" || strings.HasPrefix(authHeader, "Bearer ") {
+		if authHeader == "" || !strings.HasPrefix(authHeader, "Bearer ") {
 			utils.Error(c, http.StatusUnauthorized, "missing or invalid token")
 			c.Abort()
 			return
@@ -33,7 +34,7 @@ func AuthValidation() gin.HandlerFunc {
 			utils.Error(c, http.StatusUnauthorized, "expired token")
 		}
 
-		c.Set("username", claims.Username)
+		c.Set(helpers.Username, claims.Username)
 		c.Next()
 	}
 }
