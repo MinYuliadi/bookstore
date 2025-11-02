@@ -9,5 +9,5 @@ func main() {
 	config.InitDB()
 
 	router := routers.SetupRouters()
-	router.Run(":8080")
+	defer router.Run(":8080")
 }
