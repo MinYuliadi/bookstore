@@ -34,19 +34,20 @@ JWT_SECRET=supersecretkey
 ### 🧱 Project Structure
 
 .
-├── config/             # Database connection setup
-├── controllers/        # Business logic (Auth, Books, Categories)
-│   ├── auth/
-│   ├── books/
-│   └── categories/
-├── helpers/            # Constants, utilities, and JWT helpers
-├── middleware/         # Auth middleware, method validation
-├── migrations/         # SQL migration files
-├── models/             # Struct definitions for DB entities
-├── routers/             # Route definitions
-├── utils/              # Function utilities
-├── main.go             # Entry point
-└── go.mod
+|-- config/
+|-- controllers/
+|   |-- auth/
+|   |-- books/
+|   `-- categories/
+|-- helpers/
+|-- middleware/
+|-- migrations/
+|   `-- sql_migrations/
+|-- models/
+|-- routers/
+|-- utils/
+|-- main.go
+`-- go.mod
 
 ### 🧩 API Endpoints
 
