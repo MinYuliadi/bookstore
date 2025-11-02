@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/joho/godotenv"
 )
 
 func GenerateJWT(username string) (string, error) {
@@ -36,9 +35,7 @@ func GenerateJWT(username string) (string, error) {
 }
 
 func ValidateJWT(tokenString string) (*models.JWTClaim, error) {
-	if err := godotenv.Load(); err != nil {
-		return nil, err
-	}
+	config.InitEnv()
 
 	jwtKey := []byte(os.Getenv("JWT_KEY"))
 
