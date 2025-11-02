@@ -39,7 +39,7 @@ JWT_KEY=supersecretkey
 │   ├── auth/
 │   ├── books/
 │   └── categories/
-├── helpers/            # Constants, utilities, and JWT helpers
+├── helpers/            # Constants
 ├── middleware/         # Auth middleware, method validation
 ├── migrations/         # SQL migration files
 ├── models/             # Struct definitions for DB entities
