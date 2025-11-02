@@ -9,14 +9,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var jwtKey = []byte("")
-
 func GenerateJWT(username string) (string, error) {
 	if err := godotenv.Load(); err != nil {
 		return "", err
 	}
 
-	jwtKey = []byte(os.Getenv("JWT_KEY"))
+	jwtKey := []byte(os.Getenv("JWT_KEY"))
 
 	expirationTime := time.Now().Add(1 * time.Hour)
 
@@ -43,7 +41,7 @@ func ValidateJWT(tokenString string) (*models.JWTClaim, error) {
 		return nil, err
 	}
 
-	jwtKey = []byte(os.Getenv("JWT_KEY"))
+	jwtKey := []byte(os.Getenv("JWT_KEY"))
 
 	claims := &models.JWTClaim{}
 
