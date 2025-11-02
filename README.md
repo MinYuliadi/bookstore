@@ -28,7 +28,7 @@ DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=yourpassword
 DB_NAME=mydb
-JWT_SECRET=supersecretkey
+JWT_KEY=supersecretkey
 ```
 
 ### 🧱 Project Structure
