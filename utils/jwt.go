@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bookstore/config"
 	"bookstore/models"
 	"os"
 	"time"
@@ -10,9 +11,7 @@ import (
 )
 
 func GenerateJWT(username string) (string, error) {
-	if err := godotenv.Load(); err != nil {
-		return "", err
-	}
+	config.InitEnv()
 
 	jwtKey := []byte(os.Getenv("JWT_KEY"))
 

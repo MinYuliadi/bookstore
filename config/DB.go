@@ -7,17 +7,13 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB
 
 func InitDB() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println(".env file not found, using environment variables from system (Railway).")
-	}
+	InitEnv()
 
 	// host := os.Getenv("DB_HOST")
 	// port := os.Getenv("DB_PORT")
