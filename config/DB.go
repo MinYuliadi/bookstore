@@ -19,15 +19,16 @@ func InitDB() {
 		log.Fatal("Error loading .env file")
 	}
 
-	host := os.Getenv("DB_HOST")
-	port := os.Getenv("DB_PORT")
-	user := os.Getenv("DB_USER")
-	pass := os.Getenv("DB_PASSWORD")
-	dbname := os.Getenv("DB_NAME")
+	// host := os.Getenv("DB_HOST")
+	// port := os.Getenv("DB_PORT")
+	// user := os.Getenv("DB_USER")
+	// pass := os.Getenv("DB_PASSWORD")
+	// dbname := os.Getenv("DB_NAME")
+	dburl := os.Getenv("DB_URL")
 
-	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, pass, dbname)
+	// psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, user, pass, dbname)
 
-	db, err := sql.Open("postgres", psqlInfo)
+	db, err := sql.Open("postgres", dburl)
 
 	if err != nil {
 		log.Fatal("cannot open database", err.Error())
